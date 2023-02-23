@@ -1,4 +1,11 @@
-FROM jenkins/jenkins:latest
-USER root
-RUN curl -sSL https://get.docker.com/ | sh
-#USER jenkins
+FROM python:3.10-alpine
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["flask", "run", "--host=0.0.0.0"]

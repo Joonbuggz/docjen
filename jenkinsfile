@@ -2,16 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'docker build -t jbuggz/flaskapp'
-            }
-       
-        }
-        stage ('Login and Push'){
+       stage ('Login and Push'){
             steps {
                 script{
-                    
+                    withDockerRegistry(credentialsId: 'Docker') {
+                        docker.build('jbuggz/flaskapp').push('latest')
+                    }   
                 }
             }
         }    

@@ -20,10 +20,12 @@ spec:
       labels:
         app: flask
     spec:
+      
       containers:
       - name: flask
         image: jbuggz/flaskapp
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
+
 ---
